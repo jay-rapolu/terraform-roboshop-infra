@@ -4,9 +4,10 @@ module "backend_alb" {
   internal = true
   name    = "${var.project}-${var.environment}-backend-alb"
   vpc_id  = local.vpc_id
-  subnets = [local.private_ids]
+  subnets = local.private_ids
   create_security_group = false
   security_groups = [local.backend_alb_sg_id]
+  enable_deletion_protection = false
 
   tags = merge(
     local.common_tags,
